@@ -1,0 +1,5 @@
+.wallpaper {
+    background-image: url('/public/eldenringwallpaper.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
