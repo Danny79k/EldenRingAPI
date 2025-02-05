@@ -1,5 +1,28 @@
 .wallpaper {
-    background-image: url('/public/eldenringwallpaper.jpg');
+    background-image: url('/public/eldenringwallpaper.webp');
     background-size:cover;
     background-repeat: no-repeat;
 }
+
+.cover {
+    background-color:rgba(0, 0, 0, 0.748);
+}
+
+.active {
+    position: relative;
+    border-bottom: 2px solid white;
+}
+
+/*.active::after {
+    content: "  ";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 80px; 
+    height: 40px; 
+    background: radial-gradient(circle at bottom, rgba(255, 255, 255, 0.8) 0%, transparent 80%);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    filter: blur(10px);
+    pointer-events: none;   
+} */
