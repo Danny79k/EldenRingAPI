@@ -1,0 +1,20 @@
+.container:hover {
+    transform: scale(0.9);
+}
+
+.container{
+    box-sizing: border-box !important;
+    text-overflow: ellipsis !important;
+    height: 400px !important;
+    width: 400px !important;
+    border-radius: 20% !important;
+    text-align: center !important;
+    flex-direction: column;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    color: white !important;
+    margin: 9px !important;
+    transition-duration: 0.3s !important;
+    transition-property: transform, background-color, margin;
+}
