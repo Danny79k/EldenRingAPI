@@ -6,13 +6,14 @@ export const BossPage = () => {
 
     const [bosses, setBosses] = useState([])
     const { data, loading, error } = useFetch('https://eldenring.fanapis.com/api/bosses')
+    console.log(data)
 
     useEffect(() => {
-        if (!loading && data) setBosses(data.results)
-    }, [])
+        if (data) setBosses(data.data)
+    }, [data])
     console.log(bosses)
     return (
-        <div>
+        <div className='grid grid-cols-3 gap-3 justify-items-center items-center py-5 bg-neutral-950'>  
             {loading &&
                 <div className='flex justify-center'>
                     <div role="status">
@@ -25,9 +26,9 @@ export const BossPage = () => {
                 </div>
             }
             {error && <div>Error...</div>}
-            {data &&
+            {
                 bosses.map(boss => {
-                    return (<BossShowcase />)
+                    return (<BossShowcase boss={boss} />)
                 }
                 )
             }
