@@ -9,12 +9,18 @@ export const BossPage = () => {
 
     const [bosses, setBosses] = useState([])
     const [filter, setFilter] = useState('')
+    const [sort, setSort] = useState('')
 
     const { data, loading, error, handlePage, page } = useContext(bossContext)
 
     const handleFilter = (filterParam) => {
         setFilter(filterParam)
     }
+
+    const handleSort = (sortType) => {
+        setSort(sortType)
+    }
+
     console.log(`el filtro es ${filter}`)
     useEffect(() => {
         if (data) setBosses(data.data)
@@ -32,7 +38,7 @@ export const BossPage = () => {
     console.log("la pagina es: " + page)
     return (
         <div className='bg-neutral-950'>
-            <Lupa filter={handleFilter} />
+            <Lupa filter={handleFilter} sort={handleSort} />
             <div className={`grid grid-cols-3 gap-3  justify-items-center items-center py-5`}>
                 {loading &&
                     <div className='flex justify-center'>
@@ -63,12 +69,12 @@ export const BossPage = () => {
             </div>
             <div className='flex justify-center items-center pb-4'>
                 <button type='button' className='bg-sky-950 p-3 px-6 me-2 rounded-lg' disabled={page === 0} onClick={prevPage}>Atrás</button>
-                <button className='mx-2' onClick={() => handlePage(0)}>1</button>
-                <button className='mx-2' onClick={() => handlePage(1)}>2</button>
-                <button className='mx-2' onClick={() => handlePage(2)}>3</button>
-                <button className='mx-2' onClick={() => handlePage(3)}>4</button>
-                <button className='mx-2' onClick={() => handlePage(4)}>5</button>
-                <button className='mx-2' onClick={() => handlePage(5)}>6</button>
+                <button className='mx-2 hover:border-b' onClick={() => handlePage(0)}>1</button>
+                <button className='mx-2 hover:border-b' onClick={() => handlePage(1)}>2</button>
+                <button className='mx-2 hover:border-b' onClick={() => handlePage(2)}>3</button>
+                <button className='mx-2 hover:border-b' onClick={() => handlePage(3)}>4</button>
+                <button className='mx-2 hover:border-b' onClick={() => handlePage(4)}>5</button>
+                <button className='mx-2 hover:border-b' onClick={() => handlePage(5)}>6</button>
                 <button type='button' className='bg-sky-950 p-3 rounded-lg ms-2' disabled={page === 5} onClick={nextPage}>Adelante</button>
             </div>
         </div>
