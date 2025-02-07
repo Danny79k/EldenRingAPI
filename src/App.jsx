@@ -21,7 +21,7 @@ function App() {
             <Route path="/" element={<LandingLayout />}>
               <Route element={<LandingPage />} path="/"></Route>
               <Route element={<BossPage />} path="bosses"></Route>
-              <Route element={<Boss />} path="bosses/:id"></Route>
+              <Route element={<Boss />} path="boss/:id"></Route>
               <Route element={<ClassPage />} path="classes"></Route>
               <Route element={<NotFoundPage/>} path='*'/>
             </Route>

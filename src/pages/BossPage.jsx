@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useFetch } from '../components/UseFetch'
 import { BossShowcase } from '../components/BossShowcase'
 import { Lupa } from '../components/Lupa'
 import { bossContext } from '../providers/BossProvider'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import { Boss } from '../components/Boss.jsx'
 
 export const BossPage = () => {
 
@@ -27,7 +27,23 @@ export const BossPage = () => {
     }, [data])
     console.log(bosses)
 
-    const filtered = bosses.filter((boss) => boss.name.toLowerCase().includes(filter.toLowerCase()))
+    let filtered = bosses.filter((boss) => boss.name.toLowerCase().includes(filter.toLowerCase()))
+    
+    switch (sort) {
+        case 'Nombre':
+            filtered = filtered.sort((a, b) => a.name.localeCompare(b.name))
+            break;
+        case 'Region':
+            filtered = filtered.sort((a, b) => a.region.localeCompare(b.region))
+        case 'Runas':
+            filtered = filtered.sort((a, b) => a.drops.length > b.drops.length)
+            break;
+        default:
+            filtered
+            break;
+
+    }
+
 
     const nextPage = () => {
         handlePage(page + 1)
@@ -54,7 +70,7 @@ export const BossPage = () => {
                 {error && <div>Error...</div>}
                 {
                     filtered.map(boss => {
-                        return (<BossShowcase boss={boss} key={boss.id} />)
+                        return (<Link key={boss.id} to={`/boss/${boss.id}`}><BossShowcase boss={boss} key={boss.id} /></Link>)
                     }
                     )
                 }
