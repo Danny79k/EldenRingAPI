@@ -3,30 +3,37 @@ import { useFetch } from '../components/UseFetch'
 import { BossShowcase } from '../components/BossShowcase'
 import { Lupa } from '../components/Lupa'
 import { bossContext } from '../providers/BossProvider'
+import { useSearchParams } from 'react-router-dom'
 
 export const BossPage = () => {
 
     const [bosses, setBosses] = useState([])
-    const [filter, setFilter] = useState()
+    const [filter, setFilter] = useState('')
 
-    const {data, loading, error} = useContext(bossContext)
+    const { data, loading, error, handlePage, page } = useContext(bossContext)
 
     const handleFilter = (filterParam) => {
         setFilter(filterParam)
     }
-
+    console.log(`el filtro es ${filter}`)
     useEffect(() => {
         if (data) setBosses(data.data)
     }, [data])
     console.log(bosses)
 
-    const filtered = data.results.filter(personaje => 
-        personaje.name.toLowerCase().startsWith(searchParams.get('filter')?.toLowerCase() || ''))
+    const filtered = bosses.filter((boss) => boss.name.toLowerCase().includes(filter.toLowerCase()))
 
-    return ( 
+    const nextPage = () => {
+        handlePage(page + 1)
+    }
+    const prevPage = () => {
+        handlePage(page - 1)
+    }
+    console.log("la pagina es: " + page)
+    return (
         <div className='bg-neutral-950'>
-            <Lupa/>
-            <div className='grid grid-cols-3 gap-3 justify-items-center items-center py-5'>
+            <Lupa filter={handleFilter} />
+            <div className={`grid grid-cols-3 gap-3  justify-items-center items-center py-5`}>
                 {loading &&
                     <div className='flex justify-center'>
                         <div role="status">
@@ -40,11 +47,29 @@ export const BossPage = () => {
                 }
                 {error && <div>Error...</div>}
                 {
-                    bosses.map(boss => {
-                        return (<BossShowcase boss={boss} key={boss.id}/>)
+                    filtered.map(boss => {
+                        return (<BossShowcase boss={boss} key={boss.id} />)
                     }
                     )
                 }
+                {
+                    filtered.length < 1 &&
+                    <div className='h-screen'>
+                        <div>
+                            No hay resultado para la busqueda realizada
+                        </div>
+                    </div>
+                }
+            </div>
+            <div className='flex justify-center items-center pb-4'>
+                <button type='button' className='bg-sky-950 p-3 px-6 me-2 rounded-lg' disabled={page === 0} onClick={prevPage}>Atrás</button>
+                <button className='mx-2' onClick={() => handlePage(0)}>1</button>
+                <button className='mx-2' onClick={() => handlePage(1)}>2</button>
+                <button className='mx-2' onClick={() => handlePage(2)}>3</button>
+                <button className='mx-2' onClick={() => handlePage(3)}>4</button>
+                <button className='mx-2' onClick={() => handlePage(4)}>5</button>
+                <button className='mx-2' onClick={() => handlePage(5)}>6</button>
+                <button type='button' className='bg-sky-950 p-3 rounded-lg ms-2' disabled={page === 5} onClick={nextPage}>Adelante</button>
             </div>
         </div>
     )
