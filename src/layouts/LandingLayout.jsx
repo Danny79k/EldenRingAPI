@@ -1,6 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
+import Lottie from 'lottie-react'
+import Cat from '../../public/cat.json'
 
 export const LandingLayout = () => {
   return (
@@ -37,8 +39,11 @@ export const LandingLayout = () => {
           </div>
         </div>
         <p className='text-center pt-10 text-gray-400'><strong><a href="https://github.com/Danny79k/EldenRingAPI">Elden Ring fanpage ©</a></strong> 2025 by <strong><a href="https://github.com/Danny79k">Danny Belloli</a></strong> is licensed under CC BY-NC-SA 4.0 </p>
-        <div className='flex justify-center pt-5'>
-          <a href="https://w3.org/WAI/WCAG2AA-Conformance"><img src="/wcag2AA-blue.png" height='40' width='80' alt="wcag2AA" aria-label='wcag22AA'/></a>
+        <div className='flex justify-center items-center pt-5'>
+          <a href="https://w3.org/WAI/WCAG2AA-Conformance"><img src="/wcag2AA-blue.png" height='40' width='80' alt="wcag2AA" aria-label='wcag22AA' /></a>
+          <div className='z-10'>
+            <Lottie animationData={Cat} />
+          </div>
         </div>
       </div>
     </div>

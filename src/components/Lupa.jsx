@@ -19,7 +19,7 @@ export const Lupa = ({ filter, sort }) => {
 
   console.log(active)
   return (
-    <div className='sticky top-5 pt-5 ps-5 z-10 flex'>
+    <div className='sticky top-13 pt-5 ps-5 z-10 flex'>
       <button onClick={handleClick} className='pe-3'><i className="bi bi-search"></i></button>
       {active === true && <input className={`bg-white rounded-2xl text-black text-center`} onChange={handleChange} name='busqueda-jefe' placeholder='buscar' />}
       <Menu as="div" className="ps-1 relative inline-block text-left">
