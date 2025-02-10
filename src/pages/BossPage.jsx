@@ -5,6 +5,9 @@ import { bossContext } from '../providers/BossProvider'
 import { Link } from 'react-router-dom'
 import Lottie from 'lottie-react'
 import LoadingLottie from '../../public/spinner_lottie.json'
+import '../css/BossComp.css'
+
+
 export const BossPage = () => {
 
     const [bosses, setBosses] = useState([])
