@@ -59,7 +59,7 @@ export const BossPage = () => {
             <Lupa filter={handleFilter} sort={handleSort} />
             {loading &&
                 <div className='flex justify-center'>
-                    <Lottie animationData={LoadingLottie} /> {/*lottie para DOR*/}
+                    <Lottie animationData={LoadingLottie} />
                 </div>
             }
             <div className={`grid grid-cols-3 gap-3  justify-items-center items-center py-5`}>
